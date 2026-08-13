@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bundle syntax check
+        run: node --check lib/client.js
+      - name: Node half syntax check
+        run: node --check lib/index.js
+      - name: Unit tests
+        run: node --test
+      - name: No BOM at the start of source files
+        run: |
+          if grep -rlI $'^\xEF\xBB\xBF' --include='*.json' --include='*.js' --include='*.yml' --include='*.ps1' --include='*.sh' .; then
+            echo "BOM encontrado en los archivos de arriba" && exit 1
+          fi

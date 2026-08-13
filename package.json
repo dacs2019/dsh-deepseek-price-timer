@@ -1,0 +1,42 @@
+{
+    "name":  "dsh-deepseek-price-timer",
+    "description":  "DeepSeek peak/off-peak price timer for the DeepSeek Harness Web GUI. Detects the PC\u0027s local timezone and always shows the contrast with UTC: live clock, PICO/VALLE status pill, 24h timeline with peak windows, and the full price table (deepseek-v4-flash / deepseek-v4-pro).",
+    "version":  "1.5.0",
+    "keywords":  [
+                     "deepseek",
+                     "deepseek-harness",
+                     "dsh",
+                     "plugin",
+                     "pricing",
+                     "peak",
+                     "off-peak",
+                     "timer",
+                     "cordis"
+                 ],
+    "license":  "MIT",
+    "type":  "module",
+    "main":  "lib/index.js",
+    "exports":  {
+                    ".":  "./lib/index.js",
+                    "./client":  "./lib/client.js",
+                    "./package.json":  "./package.json"
+                },
+    "dsh":  {
+                "client":  {
+                               "platform":  "web"
+                           }
+            },
+    "scripts":  {
+                    "install:profile":  "node scripts/install.js",
+                    "install:profile:win":  "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/install.ps1",
+                    "install:profile:unix":  "sh scripts/install.sh"
+                },
+    "files":  [
+                  "lib/index.js",
+                  "lib/core.js",
+                  "lib/client.js",
+                  "version.json",
+                  "README.md",
+                  "LICENSE"
+              ]
+}

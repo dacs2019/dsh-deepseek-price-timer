@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>dsh-deepseek-price-timer — DeepSeek peak/off-peak widget for the DeepSeek Harness</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    line-height: 1.6;
+  }
+  header {
+    padding: 48px 24px 24px;
+    text-align: center;
+    border-bottom: 1px solid #21262d;
+    background: linear-gradient(180deg, #161b22, #0d1117);
+  }
+  header h1 { margin: 0 0 8px; font-size: 28px; }
+  header p { margin: 0 auto; max-width: 640px; color: #8b949e; }
+  .badges { margin-top: 16px; }
+  .badges img { margin: 2px; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px; }
+  img.screenshot {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #21262d;
+    margin: 16px 0;
+  }
+  h2 { font-size: 20px; margin-top: 32px; }
+  ul { padding-left: 22px; }
+  li { margin: 4px 0; }
+  code {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-size: 0.9em;
+  }
+  pre {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 10px;
+    padding: 14px;
+    overflow-x: auto;
+  }
+  pre code { border: 0; background: none; padding: 0; }
+  a { color: #58a6ff; }
+  .pills span {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 2px;
+  }
+  .peak { background: rgba(248,81,73,.18); color: #ff7b72; border: 1px solid rgba(248,81,73,.4); }
+  .off { background: rgba(63,185,80,.18); color: #3fb950; border: 1px solid rgba(63,185,80,.4); }
+  .flat { background: rgba(210,153,34,.18); color: #d29922; border: 1px solid rgba(210,153,34,.4); }
+  footer { text-align: center; color: #8b949e; font-size: 13px; padding: 32px 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>⏱️ dsh-deepseek-price-timer</h1>
+  <p>Live DeepSeek peak/off-peak pricing widget for the DeepSeek Harness Web GUI.
+     Detects your timezone, shows local vs UTC, and updates prices from the official page.</p>
+  <div class="badges">
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-green.svg" />
+    <img alt="Version" src="https://img.shields.io/badge/version-1.5.0-blue.svg" />
+    <img alt="Stars" src="https://img.shields.io/github/stars/dacs2019/dsh-deepseek-price-timer.svg" />
+    <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/dacs2019/dsh-deepseek-price-timer/ci.yml" />
+  </div>
+</header>
+
+<main>
+  <img class="screenshot" src="screenshot.png" alt="Widget screenshot" />
+
+  <h2>Status at a glance</h2>
+  <div class="pills">
+    <span class="peak">🔴 PEAK — 2× rate</span>
+    <span class="off">🟢 OFF-PEAK — half price</span>
+    <span class="flat">🟡 FLAT — pre-cutover countdown</span>
+  </div>
+  <p>Peak hours: <strong>01:00–04:00</strong> and <strong>06:00–10:00 UTC</strong>.
+     New pricing effective <strong>2026-08-16 16:00 UTC</strong>.</p>
+
+  <h2>Features</h2>
+  <ul>
+    <li>Live official prices (fetched every 30 min, embedded fallback)</li>
+    <li>Local clock + UTC clock with detected offset</li>
+    <li>24h timeline in your local time (green off-peak / red peak)</li>
+    <li>Session header pill + composer dock widget</li>
+    <li>Live session cost estimate from real token usage</li>
+    <li>Window-change alerts, collapse mode, tooltips, ES/EN i18n</li>
+    <li>Self-update: downloads, validates and applies new versions, then restarts</li>
+  </ul>
+
+  <h2>Install</h2>
+<pre><code>git clone https://github.com/dacs2019/dsh-deepseek-price-timer.git
+cd dsh-deepseek-price-timer
+npm run install:profile   # auto-detects Windows / Linux / macOS</code></pre>
+  <p>Then restart <code>dsh web</code> and reload the page.</p>
+
+  <h2>Configuration</h2>
+  <ul>
+    <li><code>DSH_DSPT_REPO</code> — your repo (<code>owner/repo</code>) to enable the update checker</li>
+    <li><code>DSH_DSPT_PEAK_WINDOWS</code> — override peak windows without touching code</li>
+  </ul>
+
+  <h2>Source</h2>
+  <p>Full documentation, tests and changelog:
+     <a href="https://github.com/dacs2019/dsh-deepseek-price-timer">github.com/dacs2019/dsh-deepseek-price-timer</a></p>
+</main>
+
+<footer>MIT License · Built for the DeepSeek Harness</footer>
+</body>
+</html>
